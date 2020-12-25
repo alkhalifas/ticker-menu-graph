@@ -1,6 +1,8 @@
 import React from "react";
-import {BrowserRouter, Route, Link} from "react-router-dom";
+import {BrowserRouter, Route, Router, Link} from "react-router-dom";
 import {Home} from "../Home/Home";
+import {Graph1} from "../Graph1/Graph1";
+import Login from "../Fake/Login";
 
 export class Routes extends React.Component {
     state = {
@@ -8,19 +10,16 @@ export class Routes extends React.Component {
     }
     render() {
         return (
-            <BrowserRouter>
+            <Router>
                 <div className="container">
                     <Route
                         path="/tickers"
-                        exact component={Home}>
-                    </Route>
+                        exact component={Home}/>
                     <Route
-                        path={[
-                            "/tickers/:tickerId"]}
-                        exact component={Home}>
-                    </Route>
+                        path= "/tickers/:tickerId"
+                        exact component={Home}/>
                 </div>
-            </BrowserRouter>
+            </Router>
         );
     }
 }

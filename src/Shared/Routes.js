@@ -1,28 +1,31 @@
 import React from "react";
-import {Route, Router, Link} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import {Home} from "../Home/Home";
 import {Graph1} from "../Graph1/Graph1";
 import Login from "../Fake/Login";
 
-export class Routes extends React.Component {
-    state = {
-        tickers: []
-    }
+class Routes extends React.Component {
+
     render() {
         return (
-            <Router>
-                <div className="container">
-                    <Route
-                        path="/tickers"
-                        exact component={Login}/>
-                    {/*<Route*/}
-                    {/*    path="/login"*/}
-                    {/*    exact component={Login}/>*/}
-                    <Route
-                        path= "/tickers/:tickerId"
-                        exact component={Home}/>
-                </div>
-            </Router>
+            <div>
+                <h1>Routes!</h1>
+                <BrowserRouter>
+                    <div className="container">
+                        <Route
+                            path="/tickers"
+                            exact component={Home}/>
+                        <Route
+                            path="/"
+                            exact component={Home}/>
+                        <Route
+                            path= "/tickers/:tickerId"
+                            exact component={Home}/>
+                    </div>
+                </BrowserRouter>
+            </div>
+
         );
     }
 }
+export default Routes

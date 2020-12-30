@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Router, Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import {getPrices3Months} from "../Services/ticker-service"
 import "./Home.css"
 import {Graph1} from "../Graph1/Graph1";
@@ -8,11 +8,12 @@ export class Home extends React.Component {
     state = {
         priceHistory: [],
         tickers: ["AMGN", "W", "FB", "GOOG", "BIIB", "PFE", "MSFT", "AMD"],
-        tickerId: "AMGN",
+        tickerId: "GM",
     }
 
     componentDidMount() {
-        // const tickerId = this.props.match.params.tickerId
+        this.tickerId = this.props.match.params.tickerId
+        console.log("HOME this.tickerId: ", this.tickerId)
         getPrices3Months("amgn") //todo: need to change to: this.props.match.params.tickerId
             .then(priceHistory => {
                 this.setState({
@@ -21,11 +22,22 @@ export class Home extends React.Component {
             })
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        this.tickerId = this.props.match.params.tickerId
+        const tickerId = this.tickerId
+        console.log("HOME tickerId: ", tickerId)
+        console.log("HOME this.tickerId: ", this.tickerId)
+        console.log("HOME this.props.match.params.tickerId: ", this.props.match.params.tickerId)
+
+    }
+
     // componentDidUpdate(prevProps, prevState, snapshot) {
     //     const tickerId = this.props.match.params.moduleId
     // }
 
     render() {
+        const tickerId = this.props.match.params.tickerId
+
         return (
             <div className="container-fluid container">
                 <div className="row">
@@ -38,11 +50,10 @@ export class Home extends React.Component {
                                     <li
                                         key={ticker}
                                         className="list-group-item">
-                                            <Link to={`/tickers/${ticker}`}>
+                                            <Link
+                                                to={`/tickers/${ticker}`}>
                                                 {ticker}
                                             </Link>
-
-
                                     </li>
                                 )
                             }
@@ -54,11 +65,14 @@ export class Home extends React.Component {
                     </div>
                     <div className="col-lg-9 col-sm-12">
                         <h1>Graph:</h1>
-                        console.log(this.props)
+                        <h1>HOME: {this.tickerId}</h1>
+
                         {/*<h1>Graph: {this.props.match.params.tickerId}</h1>*/}
-                        {console.log("PH: ", this.state.priceHistory)}
+                        {/*{console.log("PH: ", this.state.priceHistory)}*/}
                         {console.log("State: ", this.state)}
-                        <Graph1/>
+                        <Graph1
+                            tickerId = {this.tickerId}
+                        />
                     </div>
                 </div>
             </div>

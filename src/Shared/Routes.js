@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Route, Router, Link} from "react-router-dom";
+import {Route, Router, Link} from "react-router-dom";
 import {Home} from "../Home/Home";
 import {Graph1} from "../Graph1/Graph1";
 import Login from "../Fake/Login";
@@ -14,7 +14,10 @@ export class Routes extends React.Component {
                 <div className="container">
                     <Route
                         path="/tickers"
-                        exact component={Home}/>
+                        exact component={Login}/>
+                    {/*<Route*/}
+                    {/*    path="/login"*/}
+                    {/*    exact component={Login}/>*/}
                     <Route
                         path= "/tickers/:tickerId"
                         exact component={Home}/>

@@ -23,7 +23,7 @@ class AreaChart extends React.Component {
         const { data, type, width, ratio } = this.props;
         return (
             <div>
-                <h1>Chart: </h1>
+                <h1>Chart: {this.props.tickerId}</h1>
                 <ChartCanvas ratio={ratio} width={width} height={400}
                              margin={{ left: 50, right: 50, top: 10, bottom: 30 }}
                              seriesName="MSFT"

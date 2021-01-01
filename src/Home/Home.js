@@ -13,7 +13,6 @@ export class Home extends React.Component {
 
     componentDidMount() {
         this.tickerId = this.props.match.params.tickerId
-        console.log("HOME this.tickerId: ", this.tickerId)
         getPrices3Months("amgn") //todo: need to change to: this.props.match.params.tickerId
             .then(priceHistory => {
                 this.setState({
@@ -25,9 +24,6 @@ export class Home extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         this.tickerId = this.props.match.params.tickerId
         const tickerId = this.tickerId
-        console.log("HOME tickerId: ", tickerId)
-        console.log("HOME this.tickerId: ", this.tickerId)
-        console.log("HOME this.props.match.params.tickerId: ", this.props.match.params.tickerId)
 
     }
 
@@ -65,13 +61,9 @@ export class Home extends React.Component {
                     </div>
                     <div className="col-lg-9 col-sm-12">
                         <h1>Graph:</h1>
-                        <h1>HOME: {this.tickerId}</h1>
-
-                        {/*<h1>Graph: {this.props.match.params.tickerId}</h1>*/}
-                        {/*{console.log("PH: ", this.state.priceHistory)}*/}
-                        {console.log("State: ", this.state)}
+                        <h1>HOME: {this.props.match.params.tickerId}</h1>
                         <Graph1
-                            tickerId = {this.tickerId}
+                            tickerId = {this.props.match.params.tickerId}
                         />
                     </div>
                 </div>
